@@ -1,7 +1,8 @@
-interface WeatherData {
-  city: string;
-  temperature: number;
-  humidity: number;
-  wind: number;
-  rain: number;
+
+interface MovieData {
+  title: string;
+  releaseDate: string;
+  genre:String[];
+  director: string;
+  rating: number;
 }

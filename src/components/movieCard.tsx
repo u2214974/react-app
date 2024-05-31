@@ -8,20 +8,21 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { TiWeatherDownpour, TiWeatherSunny } from "react-icons/ti";
-import { getWeatherData } from "../api/actions";
+import { getMovieData } from "../api/actions"; // Ensure this is updated to your actual import
+import { FaFilm, FaStar, FaCalendarAlt, FaUser } from "react-icons/fa"; // Importing movie-related icons
 
-const WeatherCard: React.FC = () => {
-  const [data, setData] = useState<WeatherData>();
+
+const MovieCard: React.FC = () => {
+  const [data, setData] = useState<MovieData | null>(null);
   const [loadingState, setLoadingState] = useState(false);
-  const [city, setCity] = useState("");
+  const [genre, setGenre] = useState("");
   const [error, setError] = useState("");
 
   const handleSearch = () => {
-    console.log("Fetching Weather Data...");
-    console.log(city);
+    console.log("Fetching Movie Data...");
+    console.log(genre);
     setLoadingState(true);
-    getWeatherData(city)
+    getMovieData(genre)
       .then((res) => {
         setError("");
         if (res) {
@@ -30,13 +31,14 @@ const WeatherCard: React.FC = () => {
           setLoadingState(false);
         }
       })
-      .catch((error) => {
+      .catch((error) => { // The catch block is now complete
         console.error(error);
         setLoadingState(false);
-        setData(undefined);
-        setError(error);
+        setData(null);
+        setError(error.message);
       });
   };
+  
 
   return (
     <Card className="max-w-[400px]">
@@ -49,12 +51,12 @@ const WeatherCard: React.FC = () => {
         >
           <div className="flex flex-col w-full p-2 space-y-4">
             <Input
-              id="cityname"
+              id="genrename"
               type="text"
-              label="City"
-              value={city}
+              label="Genre"
+              value={genre}
               onChange={(e) => {
-                setCity(e.target.value);
+                setGenre(e.target.value);
               }}
             />
             <Button
@@ -72,26 +74,29 @@ const WeatherCard: React.FC = () => {
       {data ? (
         <CardBody>
           <div className="flex flex-col items-center">
-            <h1 className="text-3xl font-bold">{data.city}</h1>
-            {data.temperature > 20 ? (
-              <div>
-                <TiWeatherSunny className="w-36 h-36" />
-              </div>
-            ) : (
-              <div>
-                <TiWeatherDownpour className="w-36 h-36" />
-              </div>
-            )}
-            <p className="text-3xl font-bold">{data.temperature}°C</p>
-            <p className="text-lg">Humidity: {data.humidity}%</p>
-            <p className="text-lg">Wind: {data.wind} km/h</p>
-            <p className="text-lg">Rain: {data.rain} %</p>
+            <h1 className="text-3xl font-bold">{data.title}</h1>
+            <div className="flex items-center space-x-2">
+              <FaCalendarAlt className="w-6 h-6" />
+              <p className="text-lg">{data.releaseDate}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaFilm className="w-6 h-6" />
+              <p className="text-lg">{data.genre.join(", ")}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaUser className="w-6 h-6" />
+              <p className="text-lg">{data.director}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaStar className="w-6 h-6" />
+              <p className="text-lg">{data.rating}</p>
+            </div>
           </div>
         </CardBody>
       ) : (
         <CardBody>
           <div className="flex flex-col items-center">
-            <p className="text-xl font-bold">Please enter a city</p>
+            <p className="text-xl font-bold">Please enter a genre</p>
           </div>
         </CardBody>
       )}
@@ -111,4 +116,4 @@ const WeatherCard: React.FC = () => {
   );
 };
 
-export default WeatherCard;
+export default MovieCard;
