@@ -71,7 +71,14 @@ const MovieCard: React.FC = () => {
         </form>
       </CardHeader>
       <Divider />
-      {data ? (
+      {error && (
+        <CardBody>
+          <div className="flex flex-col items-center">
+            <p className="text-xl font-bold text-red-600">{error}</p>
+          </div>
+        </CardBody>
+      )}
+      {data && !error ? (
         <CardBody>
           <div className="flex flex-col items-center">
             <h1 className="text-3xl font-bold">{data.title}</h1>
@@ -94,21 +101,22 @@ const MovieCard: React.FC = () => {
           </div>
         </CardBody>
       ) : (
-        <CardBody>
-          <div className="flex flex-col items-center">
-            <p className="text-xl font-bold">Please enter a genre</p>
-          </div>
-        </CardBody>
+        !loadingState && !error && (
+          <CardBody>
+            <div className="flex flex-col items-center">
+              <p className="text-xl font-bold">Please enter a genre</p>
+            </div>
+          </CardBody>
+        )
       )}
       <Divider />
       <CardFooter>
         <div className="flex flex-col items-left">
-          {error && <p className="text-xs text-red-600 ">{error}</p>}
           {data && (
-            <p className="text-xs  text-gray-600 ">Last update successful.</p>
+            <p className="text-xs text-gray-600 ">Last update successful.</p>
           )}
-          {!data && (
-            <p className="text-xs  text-gray-600 ">Waiting for input...</p>
+          {!data && !error && (
+            <p className="text-xs text-gray-600 ">Waiting for input...</p>
           )}
         </div>
       </CardFooter>
