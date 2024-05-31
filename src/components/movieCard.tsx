@@ -116,7 +116,7 @@ const MovieCard: React.FC = () => {
             <p className="text-xs text-gray-600 ">Last update successful.</p>
           )}
           {!data && !error && (
-            <p className="text-xs text-gray-600 ">Waiting for input...</p>
+            <p className="text-xs text-gray-600 ">Waiting for input... </p>
           )}
         </div>
       </CardFooter>
