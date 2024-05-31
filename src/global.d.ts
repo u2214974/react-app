@@ -2,7 +2,7 @@
 interface MovieData {
   title: string;
   releaseDate: string;
-  genre:String[];
+  genre:string[];
   director: string;
   rating: number;
 }
