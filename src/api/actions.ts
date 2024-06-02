@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const API_URL = "https://organic-dollop-976jqpqj96x9f6wj-3000.app.github.dev/api";
+const API_URL = "hhttps://upgraded-carnival-v6pqgxgqvrv5cwv55-3000.app.github.dev/api";
 
 export const getMovieData = async (genre: string): Promise<MovieData> => {
   return new Promise<MovieData>((resolve, reject) => {
