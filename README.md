@@ -74,14 +74,3 @@ The frontend app is designed to work with the `weather_API` built in week 3 with
    API_URL = "http://localhost:5000";
    ```
 
-## Weather API Documentation
-
-For detailed information on the weather API endpoints, parameters, and responses, refer to the week 3 tutorial and the [Weather API Documentation](https://github.com/lucian-duta/weather_api).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any queries or further assistance, please contact [Lucian Duta](mailto:l.duta@uel.ac.uk).
