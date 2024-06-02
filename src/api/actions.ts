@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const API_URL = "https://zany-space-fiesta-7v7prgrp956j2pxrq-3000.app.github.dev/";
+const API_URL = "https://zany-space-fiesta-7v7prgrp956j2pxrq-3000.app.github.dev/api";
 
 export const getMovieData = async (genre: string): Promise<MovieData> => {
   return new Promise<MovieData>((resolve, reject) => {
